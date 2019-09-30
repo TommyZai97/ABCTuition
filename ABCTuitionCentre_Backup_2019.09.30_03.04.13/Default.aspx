@@ -4,16 +4,10 @@
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-      <table>
+    <table>
         <tr>
             <td>
-                <telerik:RadGrid ID="RadGrid1" runat="server" style="width:100%" AutoGenerateColumns="False">
-                    <MasterTableView>
-                        <Columns>
-
-                        </Columns>
-                    </MasterTableView>
-                </telerik:RadGrid>
+                <%--<telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>--%>
             </td>
         </tr>
         <tr>
@@ -23,7 +17,7 @@
     </telerik:RadLabel>
     <telerik:RadTextBox ID="RadTextBox1" Runat="server" EmptyMessage="Search..." LabelWidth="64px" Resize="None" Width="160px">
     </telerik:RadTextBox>
-    </td>
+            </td>
     </tr>
    </table>
 </asp:Content>

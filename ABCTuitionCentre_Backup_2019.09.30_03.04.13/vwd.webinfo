@@ -5,8 +5,6 @@
 <VisualWebDeveloper>
 
   <Globals>
-    
-  
     <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True"/>
   </Globals>
 </VisualWebDeveloper>
