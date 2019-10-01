@@ -33,17 +33,17 @@
           <table style="width:100%">
               <tr style="vertical-align: top; text-align: center">
                   <td>
-      <telerik:RadMenu ID="RadMenu1" Runat="server"  Style="top: 0px; left: 0px; width: 100%; z-index: 2900" Width="100%" Font-Bold="True" Font-Size="Small">
+      <telerik:RadMenu ID="RadMenu1" Runat="server"  Style="top: 0px; left: 0px; width: 100%; z-index: 2900" Width="100%" Font-Bold="True" Font-Size="Medium">
                 <Items>
-                    <telerik:RadMenuItem runat="server" Text="Home">
+                    <telerik:RadMenuItem runat="server" Text="Home" ImageUrl="~/images/home-icon32px.png" style="text-align:center" NavigateUrl="~/Default.aspx">
                     </telerik:RadMenuItem>
-                    <telerik:RadMenuItem runat="server" Text="Students">
+                    <telerik:RadMenuItem runat="server" Text="Students" ImageUrl="~/images/student-icon32px.png" style="text-align:center" NavigateUrl="~/Students/studentDefault.aspx">
                     </telerik:RadMenuItem>
-                    <telerik:RadMenuItem runat="server" Text="Administrator">
+                    <telerik:RadMenuItem runat="server" Text="Administrator" ImageUrl="~/images/settings-icon32px.png" style="text-align:center">
                         <Items>
                             <telerik:RadMenuItem runat="server" Text="Super Admin">
                                 <Items>
-                                    <telerik:RadMenuItem runat="server" Text="Child RadMenuItem 1">
+                                    <telerik:RadMenuItem runat="server" Text="Child RadMenuItem 1" NavigateUrl="~/Administrator/saDefault.aspx">
                                     </telerik:RadMenuItem>
                                 </Items>
                             </telerik:RadMenuItem>

@@ -17,6 +17,7 @@ public partial class login : System.Web.UI.Page
         if(RTBUsername.Text == "user" && RTBPassword.Text == "123")
         {
             Response.Redirect("~/default.aspx");
+ 
         }
     
     }

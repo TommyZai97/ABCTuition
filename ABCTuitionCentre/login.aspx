@@ -10,7 +10,7 @@
             <telerik:RadScriptManager ID="RadScriptManager1" Runat="server">
             </telerik:RadScriptManager>
         </div>
-        <table style="width:100%">
+        <table style="width:100%;background-color:#f0f0f0">
             <tr style="text-align:center">
                 <%--<td style="text-align:right;width:250px"> 
                     <telerik:RadLabel ID="RLUsername" Text="Username" Font-Bold="true" runat="server"></telerik:RadLabel>
