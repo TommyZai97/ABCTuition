@@ -18,6 +18,20 @@
                 <telerik:RadLabel ID="RLStuID" Width="500px" Text="Missing ID Data"  Font-Size="15px" runat="server"></telerik:RadLabel>
             </td>
         </tr>
+          <tr>
+            <td>
+                <telerik:RadLabel ID="RadLabel3" Width="150px" Font-Bold="true" Font-Size="15px" Text="Name: " runat="server"></telerik:RadLabel>
+            </td>
+            <td>
+                <telerik:RadLabel ID="RadLabel4" Width="500px" Text="Missing Name Data"  Font-Size="15px" runat="server"></telerik:RadLabel>
+            </td>
+              <td>
+                <telerik:RadLabel ID="RadLabel5" Width="150px" Font-Bold="true"  Font-Size="15px" Text="Student ID: " runat="server"></telerik:RadLabel>
+            </td>
+            <td>
+                <telerik:RadLabel ID="RadLabel6" Width="500px" Text="Missing ID Data"  Font-Size="15px" runat="server"></telerik:RadLabel>
+            </td>
+        </tr>
     </table>
 </asp:Content>
 
