@@ -33,5 +33,7 @@
             </td>
         </tr>
     </table>
+
+    <telerik:RadGrid ID="RGStudent" runat="server" AutoGenerateColumns="False"></telerik:RadGrid>
 </asp:Content>
 
