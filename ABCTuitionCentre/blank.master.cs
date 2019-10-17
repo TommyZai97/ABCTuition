@@ -15,7 +15,7 @@ public partial class blank : System.Web.UI.MasterPage
             {
                 string MsgContent = Convert.ToString(Request.Params["MsgContent"]).Trim();
                 MainRadNotification.Text = MsgContent;
-                MainRadNotification.Title = "ABC Tuition Centre";
+                MainRadNotification.Title = "ABC Tuition Center";
                 if (Request.Params["MsgTitle"] != null)
                 {
                     MainRadNotification.Title = Convert.ToString(Request.Params["MsgTitle"]).Trim();

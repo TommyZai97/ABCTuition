@@ -7,8 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
   
         <div>
-            <telerik:RadScriptManager ID="RadScriptManager1" Runat="server">
-            </telerik:RadScriptManager>
+            
         </div>
         <table style="width:100%;background-color:#f0f0f0">
             <tr style="text-align:center">

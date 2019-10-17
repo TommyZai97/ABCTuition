@@ -43,7 +43,7 @@
                         <Items>
                             <telerik:RadMenuItem runat="server" Text="Super Admin">
                                 <Items>
-                                    <telerik:RadMenuItem runat="server" Text="Child RadMenuItem 1" NavigateUrl="~/Administrator/saDefault.aspx">
+                                    <telerik:RadMenuItem runat="server" Text="Enroll Student" NavigateUrl="~/Administrator/saDefault.aspx">
                                     </telerik:RadMenuItem>
                                 </Items>
                             </telerik:RadMenuItem>
@@ -57,6 +57,7 @@
               </tr>
           </table>
          
+       
          <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
     </div>
