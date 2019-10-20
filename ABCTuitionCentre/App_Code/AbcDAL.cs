@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Data;
+using Telerik.Web.UI;
 
 /// <summary>
 /// Summary description for AbcDAL
@@ -21,7 +22,7 @@ public class AbcDAL
 
     public AbcDAL(string UserID)
     {
-        AbcConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ABCLaptop"].ToString();
+        AbcConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ABC"].ToString();
         //change the Database if it is NOT ABC Tuition Centre
         
     }
@@ -147,5 +148,162 @@ public class AbcDAL
         return ResultDataTable;
 
     }
+
+    public string UpdateStudentAuth(string StudentID,int AuthorityID)
+    {
+        string code = "";
+        SqlConnection MyCon = new SqlConnection(_AbcConnectionString);
+        SqlCommand MyCmd = new SqlCommand("UpdStudentAuthority", MyCon);
+        MyCmd.CommandTimeout = 600;
+        MyCmd.CommandType = CommandType.StoredProcedure;
+        MyCmd.Parameters.AddWithValue("@StudentID", StudentID);
+        MyCmd.Parameters.AddWithValue("@AuthorityID", AuthorityID);
+        SqlDataAdapter MyDA = new SqlDataAdapter(MyCmd);
+        DataTable ResultDataTable = new DataTable("ResultDataTable");
+
+        try
+        {
+            MyCon.Open();
+
+            MyDA.Fill(ResultDataTable);
+        }
+        catch (Exception e)
+        {
+            throw new Exception("DB Operation Error At GetAllRequestMasterByWorkType : " + e.Message);
+        }
+        finally
+        {
+            MyCon.Close();
+            MyCon.Dispose();
+            MyCmd.Dispose();
+        }
+        return code;
+
+    }
+    #endregion
+    #region Subject
+    public int AddSubjectMaster(string SubjectName)
+    {
+        int SubjectCode = 0;
+        SqlConnection MyCon = new SqlConnection(_AbcConnectionString);
+        SqlCommand MyCmd = new SqlCommand("AddSubjectMaster", MyCon);
+        MyCmd.CommandType = CommandType.StoredProcedure;
+        MyCon.Open();
+
+        try
+        { 
+            MyCmd.Parameters.AddWithValue("@SubjectName", SubjectName);
+            SubjectCode = Convert.ToInt32(MyCmd.ExecuteScalar());
+        }
+        catch (Exception e)
+        {
+            throw new Exception("DB Operation Error At AddStudentMaster : " + e.Message);
+        }
+        finally
+        {
+            MyCon.Close();
+            MyCon.Dispose();
+            MyCmd.Dispose();
+        }
+
+        return SubjectCode;
+    }
+
+    public DataTable PopulateSubject()
+    {
+        SqlConnection MyCon = new SqlConnection(AbcConnectionString);
+        SqlCommand MyCmd = new SqlCommand("SelSubjectMaster", MyCon);
+        MyCmd.CommandTimeout = 600;
+        MyCmd.CommandType = CommandType.StoredProcedure;
+        SqlDataAdapter MyDA = new SqlDataAdapter(MyCmd);
+        DataTable ResultDataTable = new DataTable("ResultDataTable");
+
+        try
+        {
+            MyCon.Open();
+
+            MyDA.Fill(ResultDataTable);
+        }
+        catch (Exception e)
+        {
+            throw new Exception("DB Operation Error At SelStudentsAll : " + e.Message);
+        }
+        finally
+        {
+            MyCon.Close();
+            MyCon.Dispose();
+            MyCmd.Dispose();
+        }
+        return ResultDataTable;
+    }
+
+    public void BindSubjectComboBox(RadComboBox RCBSubjectName)
+    {
+        SqlConnection conn = new SqlConnection(AbcConnectionString);
+        SqlDataAdapter da = new SqlDataAdapter("SELECT SubjectID,SubjectName From SubjectMaster", conn);
+        DataTable links = new DataTable();
+        da.Fill(links);
+        RCBSubjectName.DataTextField = "SubjectName";
+        RCBSubjectName.DataValueField = "SubjectID";
+        RCBSubjectName.DataSource = links;
+        RCBSubjectName.DataBind();
+    }
+
+    public int UpdateSubjectMaster(string SubjectID,string SubjectName)
+    {
+        int SubjectCode = 0;
+        SqlConnection MyCon = new SqlConnection(_AbcConnectionString);
+        SqlCommand MyCmd = new SqlCommand("UpdSubjectMaster", MyCon);
+        MyCmd.CommandType = CommandType.StoredProcedure;
+        MyCon.Open();
+
+        try
+        {
+            MyCmd.Parameters.AddWithValue("@SubjectID", SubjectID);
+            MyCmd.Parameters.AddWithValue("@SubjectName", SubjectName);
+            SubjectCode = Convert.ToInt32(MyCmd.ExecuteScalar());
+        }
+        catch (Exception e)
+        {
+            throw new Exception("DB Operation Error At AddStudentMaster : " + e.Message);
+        }
+        finally
+        {
+            MyCon.Close();
+            MyCon.Dispose();
+            MyCmd.Dispose();
+        }
+
+        return SubjectCode;
+    }  
+    public int DeleteSubjectMaster(string SubjectID)
+    {
+        int SubjectCode = 0;
+        SqlConnection MyCon = new SqlConnection(_AbcConnectionString);
+        SqlCommand MyCmd = new SqlCommand("DelSubjectMaster", MyCon);
+        MyCmd.CommandType = CommandType.StoredProcedure;
+        MyCon.Open();
+
+        try
+        {
+            MyCmd.Parameters.AddWithValue("@SubjectID", SubjectID);
+         
+            SubjectCode = Convert.ToInt32(MyCmd.ExecuteScalar());
+        }
+        catch (Exception e)
+        {
+            throw new Exception("DB Operation Error At DelSubjectMaster : " + e.Message);
+        }
+        finally
+        {
+            MyCon.Close();
+            MyCon.Dispose();
+            MyCmd.Dispose();
+        }
+
+        return SubjectCode;
+    }
+
+    
     #endregion
 }

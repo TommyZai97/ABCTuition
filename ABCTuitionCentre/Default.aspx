@@ -21,12 +21,12 @@
     </tr>
    </table>
 
-    <telerik:RadGrid ID="RadGrid1" runat="server" AllowFilteringByColumn="True" AllowPaging="True" AllowSorting="True" CellSpacing="-1" GridLines="Both" AutoGenerateColumns="False">
+    <telerik:RadGrid ID="RadGrid1" runat="server" AllowFilteringByColumn="True" AllowPaging="True" AllowSorting="True" CellSpacing="-1" GridLines="Both" AutoGenerateColumns="False" AutoGenerateEditColumn="True" OnNeedDataSource="RadGrid1_NeedDataSource">
 <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
         <ClientSettings>
             <Scrolling AllowScroll="True" UseStaticHeaders="True" />
         </ClientSettings>
-        <MasterTableView>
+        <MasterTableView DataKeyNames="StudentID">
             <Columns>
                 <telerik:GridBoundColumn DataField="StudentID" FilterControlAltText="Filter StudentID column" HeaderText="Student ID" UniqueName="StudentID">
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -57,6 +57,7 @@
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                </telerik:GridBoundColumn>
             </Columns>
+          
         </MasterTableView>
     </telerik:RadGrid>
 </asp:Content>

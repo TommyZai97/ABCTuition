@@ -21,4 +21,13 @@ public partial class _Default : System.Web.UI.Page
         RadGrid1.DataBind();
 
     }
+
+    protected void RadGrid1_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
+    {
+        AbcDAL MyDAL = new AbcDAL("");
+        DataTable ResultTable = MyDAL.PopulateStudent();
+        RadGrid1.DataSource = ResultTable;
+    }
+
+  
 }

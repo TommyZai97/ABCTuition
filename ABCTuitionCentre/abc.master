@@ -22,12 +22,15 @@
             <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
         <telerik:RadNotification ID="MainRadNotification" runat="server"></telerik:RadNotification>
         <table style="width:100%">
-         <tr style="vertical-align: top; text-align: left; background-color: #f0f0f0; height: 67px;)">
+         <tr style="vertical-align: top; text-align: left; background-color: #f0f0f0; height: 67px; background-image:url('/images/100px.png')">
+               <td style="text-align:left">
+                   
+               </td>
                     <td style="text-align: right">
                         <telerik:RadLabel ID="RLSkinManager" runat="server" Text="Skin : "></telerik:RadLabel>
                         <telerik:RadSkinManager ID="QsfSkinManager" ShowChooser="true" runat="server" PersistenceMode="Cookie" RenderMode="Auto" />
                     </td>
-
+           
                 </tr>
         </table>
           <table style="width:100%">
@@ -41,13 +44,19 @@
                     </telerik:RadMenuItem>
                     <telerik:RadMenuItem runat="server" Text="Administrator" ImageUrl="~/images/settings-icon32px.png" style="text-align:center">
                         <Items>
-                            <telerik:RadMenuItem runat="server" Text="Super Admin">
+                            <telerik:RadMenuItem runat="server" Text="Management">
                                 <Items>
                                     <telerik:RadMenuItem runat="server" Text="Enroll Student" NavigateUrl="~/Administrator/saDefault.aspx">
                                     </telerik:RadMenuItem>
+                                    <telerik:RadMenuItem runat="server" NavigateUrl="~/Administrator/SubjectTool.aspx" Text="Subject Tools">
+                                    </telerik:RadMenuItem>
                                 </Items>
                             </telerik:RadMenuItem>
-                            <telerik:RadMenuItem runat="server" Text="Professor">
+                            <telerik:RadMenuItem runat="server" Text="Progress">
+                                <Items>
+                                    <telerik:RadMenuItem runat="server" NavigateUrl="~/Administrator/Progress.aspx" Text="Modify Progress">
+                                    </telerik:RadMenuItem>
+                                </Items>
                             </telerik:RadMenuItem>
                         </Items>
                     </telerik:RadMenuItem>

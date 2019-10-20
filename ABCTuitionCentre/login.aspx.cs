@@ -25,6 +25,7 @@ public partial class login : System.Web.UI.Page
        
         if (RTBUsername.Text == "user" && RTBPassword.Text == "123")
         {
+            MyDal.UpdateStudentAuth("STU1000001",1002);
             Response.Redirect("~/default.aspx");
  
         }
@@ -43,10 +44,12 @@ public partial class login : System.Web.UI.Page
             } 
             if (Login == "123")
             {
+                MyDal.UpdateStudentAuth("STU1000001",1001);
                 Response.Redirect("~/default.aspx");
             }
             else
             {
+                
                 Response.Redirect("login.aspx?MsgPos=5&MsgType=warning&MsgContent=You are not authorised to this function, User Wrong Login !!!!");
 
             }

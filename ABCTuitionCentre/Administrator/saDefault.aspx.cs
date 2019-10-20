@@ -20,13 +20,13 @@ public partial class Administrator_saDefault : System.Web.UI.Page
             foreach (DataRow row in ResultTable.Rows)
             {
                 AuthorityID = Convert.ToInt32(row["AuthorityID"]); //Getting my field value
-              
-            }
-            if(AuthorityID == 1001)
-            {
-                Response.Redirect("~/default.aspx?MsgPos=5&MsgType=warning&MsgContent=You are not authorised to this function, No students allowed !!!!");
+                if (AuthorityID != 1002)
+                {
+                    Response.Redirect("~/default.aspx?MsgPos=5&MsgType=warning&MsgContent=You are not authorised to this function, No students allowed !!!!");
 
+                }
             }
+           
         }
     }
 
