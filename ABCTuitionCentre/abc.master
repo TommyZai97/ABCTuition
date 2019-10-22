@@ -22,7 +22,7 @@
             <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
         <telerik:RadNotification ID="MainRadNotification" runat="server"></telerik:RadNotification>
         <table style="width:100%">
-         <tr style="vertical-align: top; text-align: left; background-color: #f0f0f0; height: 67px; background-image:url('/images/100px.png')">
+         <tr style="vertical-align: top; text-align: left; background-color: #f0f0f0; height: 67px; ">
                <td style="text-align:left">
                    
                </td>
@@ -55,6 +55,8 @@
                             <telerik:RadMenuItem runat="server" Text="Progress">
                                 <Items>
                                     <telerik:RadMenuItem runat="server" NavigateUrl="~/Administrator/Progress.aspx" Text="Modify Progress">
+                                    </telerik:RadMenuItem>
+                                    <telerik:RadMenuItem runat="server" NavigateUrl="~/Administrator/EnrollSubject.aspx" Text="Subject Enrollment">
                                     </telerik:RadMenuItem>
                                 </Items>
                             </telerik:RadMenuItem>

@@ -22,7 +22,8 @@ public class AbcDAL
 
     public AbcDAL(string UserID)
     {
-        AbcConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ABC"].ToString();
+        
+        AbcConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ABCLaptop"].ToString();
         //change the Database if it is NOT ABC Tuition Centre
         
     }
@@ -116,6 +117,18 @@ public class AbcDAL
         }
         return ResultDataTable;
 
+    }
+
+    public void BindStudentCombobox(RadComboBox RCBStudentName)
+    {
+        SqlConnection conn = new SqlConnection(AbcConnectionString);
+        SqlDataAdapter da = new SqlDataAdapter("SELECT StudentID,StudentName From StudentMaster", conn);
+        DataTable links = new DataTable();
+        da.Fill(links);
+        RCBStudentName.DataTextField = "StudentName";
+        RCBStudentName.DataValueField = "StudentID";
+        RCBStudentName.DataSource = links;
+        RCBStudentName.DataBind();
     }
 
     public DataTable SelectStudentByUserPass(string Username,string Password)
@@ -236,7 +249,34 @@ public class AbcDAL
         }
         return ResultDataTable;
     }
+    public DataTable SelectSubjectMasterByID(string SubjectID)
+    {
+        SqlConnection MyCon = new SqlConnection(AbcConnectionString);
+        SqlCommand MyCmd = new SqlCommand("SelSubjectMasterByID", MyCon);
+        MyCmd.CommandTimeout = 600;
+        MyCmd.CommandType = CommandType.StoredProcedure;
 
+        SqlDataAdapter MyDA = new SqlDataAdapter(MyCmd);
+        DataTable ResultDataTable = new DataTable("ResultDataTable");
+        MyCon.Open();
+        try
+        {
+            MyCmd.Parameters.AddWithValue("@SubjectID", SubjectID);
+
+            MyDA.Fill(ResultDataTable);
+        }
+        catch (Exception e)
+        {
+            throw new Exception("DB Operation Error At SelSubjectMasterByID : " + e.Message);
+        }
+        finally
+        {
+            MyCon.Close();
+            MyCon.Dispose();
+            MyCmd.Dispose();
+        }
+        return ResultDataTable;
+    }
     public void BindSubjectComboBox(RadComboBox RCBSubjectName)
     {
         SqlConnection conn = new SqlConnection(AbcConnectionString);
@@ -304,6 +344,64 @@ public class AbcDAL
         return SubjectCode;
     }
 
+    #endregion
+    #region Class
+    public int AddClassMaster(string ClassName,string SubjectID,string StudentID)
+    {
+        int SubjectCode = 0;
+        SqlConnection MyCon = new SqlConnection(_AbcConnectionString);
+        SqlCommand MyCmd = new SqlCommand("AddClassMaster", MyCon);
+        MyCmd.CommandType = CommandType.StoredProcedure;
+        MyCon.Open();
+
+        try
+        {
+            MyCmd.Parameters.AddWithValue("@ClassName", ClassName);
+            MyCmd.Parameters.AddWithValue("@SubjectID", SubjectID);
+            MyCmd.Parameters.AddWithValue("@StudentID", StudentID);
+            SubjectCode = Convert.ToInt32(MyCmd.ExecuteScalar());
+        }
+        catch (Exception e)
+        {
+            throw new Exception("DB Operation Error At AddClassMaster : " + e.Message);
+        }
+        finally
+        {
+            MyCon.Close();
+            MyCon.Dispose();
+            MyCmd.Dispose();
+        }
+
+        return SubjectCode;
+    }
+
+    public DataTable PopulateClass()
+    {
+        SqlConnection MyCon = new SqlConnection(AbcConnectionString);
+        SqlCommand MyCmd = new SqlCommand("SelClassMaster", MyCon);
+        MyCmd.CommandTimeout = 600;
+        MyCmd.CommandType = CommandType.StoredProcedure;
+        SqlDataAdapter MyDA = new SqlDataAdapter(MyCmd);
+        DataTable ResultDataTable = new DataTable("ResultDataTable");
+
+        try
+        {
+            MyCon.Open();
+
+            MyDA.Fill(ResultDataTable);
+        }
+        catch (Exception e)
+        {
+            throw new Exception("DB Operation Error At SelClassMaster : " + e.Message);
+        }
+        finally
+        {
+            MyCon.Close();
+            MyCon.Dispose();
+            MyCmd.Dispose();
+        }
+        return ResultDataTable;
+    } 
     
     #endregion
 }

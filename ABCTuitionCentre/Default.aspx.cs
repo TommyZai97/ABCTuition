@@ -10,7 +10,7 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        DisplayData();   
+        //DisplayData();   
     }
 
     public void DisplayData()
@@ -29,5 +29,5 @@ public partial class _Default : System.Web.UI.Page
         RadGrid1.DataSource = ResultTable;
     }
 
-  
+
 }
