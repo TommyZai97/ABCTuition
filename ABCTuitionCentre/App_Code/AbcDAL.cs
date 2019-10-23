@@ -23,7 +23,7 @@ public class AbcDAL
     public AbcDAL(string UserID)
     {
         
-        AbcConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ABCLaptop"].ToString();
+        AbcConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ABC"].ToString();
         //change the Database if it is NOT ABC Tuition Centre
         
     }
@@ -401,7 +401,52 @@ public class AbcDAL
             MyCmd.Dispose();
         }
         return ResultDataTable;
-    } 
-    
+    }
+
+    #endregion
+    #region Attendance
+    public DataTable PopulateAttendanceByStudentID(string StudentID)
+    {
+        SqlConnection MyCon = new SqlConnection(AbcConnectionString);
+        SqlCommand MyCmd = new SqlCommand("SelAttendanceByStuID", MyCon);
+        MyCmd.CommandTimeout = 600;
+        MyCmd.CommandType = CommandType.StoredProcedure;
+        SqlDataAdapter MyDA = new SqlDataAdapter(MyCmd);
+        DataTable ResultDataTable = new DataTable("ResultDataTable");
+        MyCon.Open();
+        try
+        {
+            
+            MyCmd.Parameters.AddWithValue("@StudentID", StudentID);
+            MyDA.Fill(ResultDataTable);
+        }
+        catch (Exception e)
+        {
+            throw new Exception("DB Operation Error At SelAttendanceByStuID : " + e.Message);
+        }
+        finally
+        {
+            MyCon.Close();
+            MyCon.Dispose();
+            MyCmd.Dispose();
+        }
+        return ResultDataTable;
+    }
+
+    public void BindAttendanceComboBox(RadComboBox RCBSubjectName)
+    {
+        SqlConnection conn = new SqlConnection(AbcConnectionString);
+        SqlCommand MyCmd = new SqlCommand("SelAttendanceByStuID");
+        MyCmd.CommandTimeout = 600;
+        MyCmd.CommandType = CommandType.StoredProcedure;
+        SqlDataAdapter MyDA = new SqlDataAdapter(MyCmd);
+        DataTable links = new DataTable();
+        MyDA.Fill(links);
+        RCBSubjectName.DataTextField = "Attendance";
+        RCBSubjectName.DataValueField = "AttendanceID";
+        RCBSubjectName.DataSource = links;
+        RCBSubjectName.DataBind();
+    }
+
     #endregion
 }

@@ -57,7 +57,6 @@
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                </telerik:GridBoundColumn>
             </Columns>
-          
         </MasterTableView>
     </telerik:RadGrid>
 </asp:Content>
