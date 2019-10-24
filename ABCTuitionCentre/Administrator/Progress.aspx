@@ -47,7 +47,7 @@
             </td>
             <td style="width:75%">
                <telerik:RadLabel ID="RLStudentName"  runat="server">
-                    PLEASE SELECT A STUDENT
+                    
                 </telerik:RadLabel>
             </td>
              <td>
@@ -99,5 +99,40 @@
             </td>
         </tr>
     </table>
+
+    <telerik:RadGrid ID="RGClassMaster" runat="server" AutoGenerateColumns="False" OnNeedDataSource="RGClassMaster_NeedDataSource">
+          <ClientSettings>
+            <Scrolling AllowScroll="True" UseStaticHeaders="True" />
+        </ClientSettings>
+        <MasterTableView DataKeyNames="ClassID">
+            <Columns>
+                <telerik:GridBoundColumn DataField="ClassID" FilterControlAltText="Filter ClassID column" HeaderText="ClassID" UniqueName="ClassID">
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Bold="true"/>
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+               </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="ClassName" FilterControlAltText="Filter ClassName column" HeaderText="ClassName" UniqueName="ClassName">
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Bold="true"/>
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+               </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="SubjectID" FilterControlAltText="Filter SubjectID column" HeaderText="SubjectID" UniqueName="SubjectID">
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Bold="true"/>
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+               </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="StudentiD" FilterControlAltText="Filter StudentiD column" HeaderText="Student ID" UniqueName="StudentiD">
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Bold="true"/>
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+               </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="Grade" FilterControlAltText="Filter Grade column" HeaderText="Grade" UniqueName="Grade">
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Bold="true"/>
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+               </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="Attendance" FilterControlAltText="Filter Attendance column" HeaderText="Attendance" UniqueName="Attendance">
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Bold="true"/>
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+               </telerik:GridBoundColumn>
+               
+            </Columns>
+        </MasterTableView>
+    </telerik:RadGrid>
 </asp:Content>
 

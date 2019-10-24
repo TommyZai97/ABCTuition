@@ -23,7 +23,7 @@ public class AbcDAL
     public AbcDAL(string UserID)
     {
         
-        AbcConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ABC"].ToString();
+        AbcConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ABCLaptop"].ToString();
         //change the Database if it is NOT ABC Tuition Centre
         
     }
@@ -401,6 +401,62 @@ public class AbcDAL
             MyCmd.Dispose();
         }
         return ResultDataTable;
+    }
+    public DataTable PopulateClassByStudentID(string StudentID)
+    {
+        SqlConnection MyCon = new SqlConnection(AbcConnectionString);
+        SqlCommand MyCmd = new SqlCommand("SelClassMasterByStuID", MyCon);
+        MyCmd.CommandTimeout = 600;
+        MyCmd.CommandType = CommandType.StoredProcedure;
+        SqlDataAdapter MyDA = new SqlDataAdapter(MyCmd);
+        DataTable ResultDataTable = new DataTable("ResultDataTable");
+        MyCon.Open();
+        try
+        {
+
+            MyCmd.Parameters.AddWithValue("@StudentID", StudentID);
+            MyDA.Fill(ResultDataTable);
+        }
+        catch (Exception e)
+        {
+            throw new Exception("DB Operation Error At SelClassMasterByStuID : " + e.Message);
+        }
+        finally
+        {
+            MyCon.Close();
+            MyCon.Dispose();
+            MyCmd.Dispose();
+        }
+        return ResultDataTable;
+    }
+    public int UpdateClassGradeByStudentID (string StudentID,string Attendance, string grade, string ClassID)
+    {
+        int SubjectCode = 0;
+        SqlConnection MyCon = new SqlConnection(_AbcConnectionString);
+        SqlCommand MyCmd = new SqlCommand("UpdClassGrade", MyCon);
+        MyCmd.CommandType = CommandType.StoredProcedure;
+        MyCon.Open();
+
+        try
+        {
+            MyCmd.Parameters.AddWithValue("@grade", grade);
+            MyCmd.Parameters.AddWithValue("@Attendance", Attendance);
+            MyCmd.Parameters.AddWithValue("@StudentID", StudentID);
+            MyCmd.Parameters.AddWithValue("@ClassID", ClassID);
+            SubjectCode = Convert.ToInt32(MyCmd.ExecuteScalar());
+        }
+        catch (Exception e)
+        {
+            throw new Exception("DB Operation Error At UpdClassGrade : " + e.Message);
+        }
+        finally
+        {
+            MyCon.Close();
+            MyCon.Dispose();
+            MyCmd.Dispose();
+        }
+
+        return SubjectCode;
     }
 
     #endregion
