@@ -12,12 +12,23 @@ public partial class Administrator_SubjectTool : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        int AuthorityID = 0;
         AbcDAL MyDAL = new AbcDAL("");
         if (!IsPostBack)
         {
            // PopulateSubjectGrid();
             MyDAL.BindSubjectComboBox(RCBSubjectName);
+            DataTable ResultTable = MyDAL.PopulateStudent();
+
+
+            AuthorityID = Convert.ToInt32(ResultTable.Rows[0]["AuthorityID"]); //Getting my field value
+            if (AuthorityID != 1002)
+            {
+                Response.Redirect("~/default.aspx?MsgPos=5&MsgType=warning&MsgContent=You are not authorised to this function, No students allowed !!!!");
+
+            }
         }
+
     }
 
     protected void RBCreateSubject_Click(object sender, EventArgs e)

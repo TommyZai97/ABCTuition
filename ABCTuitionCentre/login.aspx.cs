@@ -21,8 +21,10 @@ public partial class login : System.Web.UI.Page
         string Login = "Error";
 
         AbcDAL MyDal = new AbcDAL("");
+        string Username = "";
 
-       
+
+
         if (RTBUsername.Text == "user" && RTBPassword.Text == "123")
         {
             MyDal.UpdateStudentAuth("STU1000001",1002);
@@ -35,7 +37,7 @@ public partial class login : System.Web.UI.Page
             DataTable ResultTable = MyDal.SelectStudentByUserPass(RTBUsername.Text, RTBPassword.Text);
             for (int i = 0; i < ResultTable.Rows.Count; i++) //Looping through rows
             {
-                var Username = ResultTable.Rows[i]["Username"]; //Getting my field value
+                Username = ResultTable.Rows[i]["Username"].ToString().Trim(); //Getting my field value
                 var Password = ResultTable.Rows[i]["Password"]; //Getting my field value
 
                 Login = "123";
@@ -44,7 +46,7 @@ public partial class login : System.Web.UI.Page
             } 
             if (Login == "123")
             {
-                MyDal.UpdateStudentAuth("STU1000001",1001);
+                MyDal.UpdateStudentAuth(Username, 1);
                 Response.Redirect("~/default.aspx");
             }
             else

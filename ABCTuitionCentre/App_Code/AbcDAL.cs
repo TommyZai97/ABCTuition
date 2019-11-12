@@ -89,6 +89,38 @@ public class AbcDAL
         return StudentCodeID;
     }
 
+    public int UpdStudentMaster(string StudentID,string StudentName, string PhoneNo, string Address, DateTime DOB)
+    {
+        int StudentCodeID = 0;
+        SqlConnection MyCon = new SqlConnection(_AbcConnectionString);
+        SqlCommand MyCmd = new SqlCommand("UpdStudentMaster", MyCon);
+        MyCmd.CommandType = CommandType.StoredProcedure;
+        MyCon.Open();
+
+        try
+        {
+            MyCmd.Parameters.AddWithValue("@StudentID", StudentID);
+            MyCmd.Parameters.AddWithValue("@StudentName", StudentName);
+            MyCmd.Parameters.AddWithValue("@PhoneNo", PhoneNo);
+            MyCmd.Parameters.AddWithValue("@Address", Address);
+            MyCmd.Parameters.AddWithValue("@DOB", DOB);
+         
+            StudentCodeID = Convert.ToInt32(MyCmd.ExecuteScalar());
+        }
+        catch (Exception e)
+        {
+            throw new Exception("DB Operation Error At AddStudentMaster : " + e.Message);
+        }
+        finally
+        {
+            MyCon.Close();
+            MyCon.Dispose();
+            MyCmd.Dispose();
+        }
+
+        return StudentCodeID;
+    }
+
     public DataTable SelectStudentMasterByID(string StudentID)
     {
         SqlConnection MyCon = new SqlConnection(_AbcConnectionString);
@@ -162,6 +194,36 @@ public class AbcDAL
 
     }
 
+    public DataTable SelectStudentByAuthID(int AuthorityId)
+    {
+        SqlConnection MyCon = new SqlConnection(_AbcConnectionString);
+        SqlCommand MyCmd = new SqlCommand("SelStudentByStuAuth", MyCon);
+        MyCmd.CommandTimeout = 600;
+        MyCmd.CommandType = CommandType.StoredProcedure;
+        MyCmd.Parameters.AddWithValue("@AuthorityID", AuthorityId);
+        
+        SqlDataAdapter MyDA = new SqlDataAdapter(MyCmd);
+        DataTable ResultDataTable = new DataTable("ResultDataTable");
+
+        try
+        {
+            MyCon.Open();
+
+            MyDA.Fill(ResultDataTable);
+        }
+        catch (Exception e)
+        {
+            throw new Exception("DB Operation Error At SelStudentByStuAuth : " + e.Message);
+        }
+        finally
+        {
+            MyCon.Close();
+            MyCon.Dispose();
+            MyCmd.Dispose();
+        }
+        return ResultDataTable;
+
+    }
     public string UpdateStudentAuth(string StudentID,int AuthorityID)
     {
         string code = "";
@@ -415,6 +477,34 @@ public class AbcDAL
         {
 
             MyCmd.Parameters.AddWithValue("@StudentID", StudentID);
+            MyDA.Fill(ResultDataTable);
+        }
+        catch (Exception e)
+        {
+            throw new Exception("DB Operation Error At SelClassMasterByStuID : " + e.Message);
+        }
+        finally
+        {
+            MyCon.Close();
+            MyCon.Dispose();
+            MyCmd.Dispose();
+        }
+        return ResultDataTable;
+    }
+    public DataTable PopulateClassByStudentIDSubjectID(string StudentID,string SubjectID)
+    {
+        SqlConnection MyCon = new SqlConnection(AbcConnectionString);
+        SqlCommand MyCmd = new SqlCommand("SelClassMasterByStuIDSubID", MyCon);
+        MyCmd.CommandTimeout = 600;
+        MyCmd.CommandType = CommandType.StoredProcedure;
+        SqlDataAdapter MyDA = new SqlDataAdapter(MyCmd);
+        DataTable ResultDataTable = new DataTable("ResultDataTable");
+        MyCon.Open();
+        try
+        {
+
+            MyCmd.Parameters.AddWithValue("@StudentID", StudentID);
+            MyCmd.Parameters.AddWithValue("@SubjectID", SubjectID);
             MyDA.Fill(ResultDataTable);
         }
         catch (Exception e)

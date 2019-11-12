@@ -40,7 +40,7 @@
                 <Items>
                     <telerik:RadMenuItem runat="server" Text="Home" ImageUrl="~/images/home-icon32px.png" style="text-align:center" NavigateUrl="~/Default.aspx">
                     </telerik:RadMenuItem>
-                    <telerik:RadMenuItem runat="server" Text="Students" ImageUrl="~/images/student-icon32px.png" style="text-align:center" NavigateUrl="~/Students/studentDefault.aspx">
+                    <telerik:RadMenuItem runat="server" Text="Students" ImageUrl="~/images/student-icon32px.png" style="text-align:center" NavigateUrl="~/Students/StudentProfile.aspx">
                     </telerik:RadMenuItem>
                     <telerik:RadMenuItem runat="server" Text="Administrator" ImageUrl="~/images/settings-icon32px.png" style="text-align:center">
                         <Items>
@@ -70,6 +70,7 @@
          
        
          <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+            
         </asp:ContentPlaceHolder>
     </div>
     </form>

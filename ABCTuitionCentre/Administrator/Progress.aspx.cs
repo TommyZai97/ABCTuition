@@ -11,10 +11,22 @@ public partial class Administrator_Progress : System.Web.UI.Page
     static string ClassID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        int AuthorityID = 0;
         if (!IsPostBack)
         {
             StudentSearchBox();
             SubjectCombobox();
+
+            AbcDAL MyDAL = new AbcDAL("");
+            DataTable ResultTable = MyDAL.PopulateStudent();
+
+
+            AuthorityID = Convert.ToInt32(ResultTable.Rows[0]["AuthorityID"]); //Getting my field value
+            if (AuthorityID != 1002)
+            {
+                Response.Redirect("~/default.aspx?MsgPos=5&MsgType=warning&MsgContent=You are not authorised to this function, No students allowed !!!!");
+
+            }
         }
     }
 

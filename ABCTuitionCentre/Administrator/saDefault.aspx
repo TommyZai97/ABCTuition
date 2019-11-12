@@ -62,5 +62,45 @@
             <telerik:RadButton ID="RBEnrollStudent" runat="server" Font-Bold="true" Text="Enroll Student" OnClick="RBEnrollStudent_Click"></telerik:RadButton>
         </div>
 
+    <telerik:RadGrid ID="RadGrid1" runat="server" AllowFilteringByColumn="True" AllowPaging="True" OnUpdateCommand="RadGrid1_UpdateCommand" AutoGenerateEditColumn="true" AllowSorting="True" CellSpacing="-1" GridLines="Both" AutoGenerateColumns="False" OnNeedDataSource="RadGrid1_NeedDataSource" OnSelectedCellChanged="RadGrid1_SelectedCellChanged" OnSelectedIndexChanged="RadGrid1_SelectedIndexChanged">
+<GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
+        <ClientSettings>
+            <Scrolling AllowScroll="True" UseStaticHeaders="True" />
+            <Selecting AllowRowSelect="true" />
+        </ClientSettings>
+        <MasterTableView DataKeyNames="StudentID">
+            <Columns>
+                <telerik:GridBoundColumn DataField="StudentID" FilterControlAltText="Filter StudentID column" HeaderText="Student ID" UniqueName="StudentID">
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+               </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="StudentName" FilterControlAltText="Filter StudentName column" HeaderText="Student Name" UniqueName="StudentName">
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+               </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="PhoneNo" FilterControlAltText="Filter PhoneNo column" HeaderText="Phone No" UniqueName="PhoneNo">
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+               </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="Address" FilterControlAltText="Filter Address column" HeaderText="Address" UniqueName="Address">
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+               </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="DOB" FilterControlAltText="Filter DOB column" HeaderText="Date Of Birth" UniqueName="DOB">
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+               </telerik:GridBoundColumn>
+              <%--  <telerik:GridBoundColumn DataField="CreatedBy" FilterControlAltText="Filter CreatedBy column" HeaderText="Created By" UniqueName="CreatedBy">
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+               </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="CreatedAt" FilterControlAltText="Filter CreatedAt column" HeaderText="Created At" UniqueName="CreatedAt">
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+               </telerik:GridBoundColumn>--%>
+            </Columns>
+             
+        </MasterTableView>
+    </telerik:RadGrid>
 </asp:Content>
 
