@@ -5,11 +5,11 @@
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-  
-        <div>
-            
-        </div>
-        <table style="width:100%;background-color:#f0f0f0">
+    <div align="right" style="background-color:darkseagreen">
+         <telerik:RadSkinManager ID="RadSkinManager1" runat="server"  ShowChooser="True" PersistenceMode="Cookie" Skin="Bootstrap"></telerik:RadSkinManager>
+    
+    </div>
+       <table style="width:100%;background-color:#f0f0f0">
             <tr style="text-align:center">
                 <%--<td style="text-align:right;width:250px"> 
                     <telerik:RadLabel ID="RLUsername" Text="Username" Font-Bold="true" runat="server"></telerik:RadLabel>
@@ -31,7 +31,7 @@
          
         </table>
 
-           <table style="width:100%">
+           <table style="width:100%; background-color:darkseagreen">
                 <tr>
                 <td style="text-align:right">
                     <telerik:RadButton ID="RBLogin" Font-Bold="true" Width="150px" runat="server" Text="Login" OnClick="RBLogin_Click"></telerik:RadButton>

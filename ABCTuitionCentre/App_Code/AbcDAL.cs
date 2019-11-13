@@ -23,7 +23,7 @@ public class AbcDAL
     public AbcDAL(string UserID)
     {
         
-        AbcConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ABCLaptop"].ToString();
+        AbcConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ABC"].ToString();
         //change the Database if it is NOT ABC Tuition Centre
         
     }
